@@ -164,7 +164,7 @@ export default Counter;
 - The workflow is **Slice → Store → Provider → useSelector/useDispatch**.
 
 
-
+What is a "Slice" in Redux Toolkit?
 
 
 ### **What is a "Slice" in Redux Toolkit?**  
