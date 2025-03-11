@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react'
 
-const logo = function({width = "122px"}){
-    return(
-        <div>Logo.jsx</div>
-    )
+function Logo({width = '100px'}) {
+  return (
+    <div>Logo</div>
+  )
 }
+
+export default Logo
