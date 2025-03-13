@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "pranaygp.vscode-css-peek",
+    "ritwickdey.liveserver",
+    "thekalinga.bootstrap4-vscode",
+    "xabikos.javascriptsnippets",
+    "zignd.html-css-class-completion"
+  ]
+}

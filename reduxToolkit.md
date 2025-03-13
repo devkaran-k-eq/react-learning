@@ -1,4 +1,4 @@
-# 1. Why Redux Toolkit Over `useContext`?
+### **1. Why Redux Toolkit Over `useContext`?**
 
 Both `useContext` and Redux Toolkit help manage state in a React app, but Redux Toolkit solves some key problems of `useContext`:
 
@@ -713,3 +713,27 @@ Would you like an example where `initialState` is loaded dynamically (like fetch
 
 
 ## Look around yourself. 99.99% of the people will generally be: lazy, unfocused, random, non-process, non-systematic, non-improving, relying on past laurels, etc. You just need to be a bit better on these counts, and you will win The Game of Life. Hands Down.
+
+
+### Top recruiters and industry breakdown
+#### Prominent recruiters included Accenture Strategy (75 offers), Boston Consulting Group (25), TCS Management Consulting (24), American Express (20), Bain & Company (17), PwC (16), and McKinsey & Company (14).
+
+#### A detailed sector-wise breakdown of the recruitment process is as follows:
+
+#### Consulting (32 firms – 245 offers): Accenture ATCI, Accenture Strategy, Alvarez & Marsal, Arthur D. Little, Bain & Company, Boston Consulting Group, ConsultAdd Services, EY India, EY Parthenon India, EY Parthenon Singapore, GDi Partners, India PAC Consulting, Infosys Consulting, ISEG Foundation, Kearney, KPMG, LEK Consulting, McKinsey & Company, Monitor Deloitte, Oliver Wyman, Practus Advisors, PwC, Samagra Consulting, Showtime Consulting, Simon-Kucher & Partners, Strategy& India, Strategy& Middle East, Takshashila Consulting, TCS Management Consulting, Tech Trust - Consultadd Group, TransformationX, Vector Consulting.
+
+#### IT Software/Analytics/Product Management (34 firms – 80 offers): Accordion, Adobe, Amagi Media Labs, Aurigo, BrowserStack, Capgemini, Capital One, ClearTax, Cloudfiles, Coforge, Cognizant, Cohesity, Cyware, e2open, Eightfold AI, EXL Digital, EXL Services, Gemini Solutions, Google, GyanSys Infotech, Kreditbee, KyN Hood, Microsoft, NetApp, Newgen Software, Oracle, Pine Labs, Salesforce, ThoughtSpot, Trianz, UKG, Vinculum, Vmock, Xoriant.
+
+#### Finance/Banking/Investments (41 firms – 79 offers): Acuity Knowledge Partners, Ambit, ARGA Investment Management, Avendus Capital, Axis Bank, Bajaj Finserv, Bank of America, Barclays, BNP Paribas, Cholamandalam Finance, CIFDAQ, CitiBank, Coverfox, Credila, D.E. Shaw, Deutsche Bank, DSP Asset Manager, Edelweiss Alternatives, EY India Investment Banking, Faering Capital, Goldman Sachs, HSBC Bank, IDFC First Bank, IIFL Securities, IvyCap Ventures, JP Morgan Chase & Co., Kotak Mahindra Bank, Kotak Mahindra Capital (IB), L&T Finance, Manapuram Finance, NatWest Group, Navi, o3 Capital, Piramal Alternatives, Power Finance Corporation, Rothschild & Co., SBI Funds Management, Standard Chartered Bank, Trust Group, Universal Sompo, UTI AMC.
+
+#### Ecommerce/Payments/Telecom/Logistics (19 firms – 70 offers): Airtel, Amazon, American Express, C-DOT, DTDC Express, Flipkart, Juspay, Myntra, National Payments Corporation of India, NoBroker, Nykaa, Ola, PhonePe, QuickSell, Swiggy, Tata Play, Tesco India, Visa, Zomato.
+
+#### Manufacturing/Construction/Energy/Infrastructure (19 firms – 38 offers): Arcelor Mittal Nippon Steel, Arvind SmartSpaces, Asian Paints, Blueleaf Energy, Century Real Estate Holdings, Indian Oil Corporation, KPIT Technologies, Lodha Group, Lodha Ventures, ReNew Power, Rishi FIBC, Rubber King, Samsung Electronics, Scimplify, Sobha Realty, Sunrise Polymers, Suzlon Energy, Tata Steel, TKIL Industries.
+
+#### FMCG/Retail (16 firms – 37 offers): AB InBev, Amul, Diageo, Fast Retailing, Hindustan Coca-Cola Beverages, Hindustan Unilever, ITC, Kraft Heinz, Marico, Mondelez, Olam Food Ingredients, Par Empire, Philip Morris International, Pidilite, Procter & Gamble, Wipro Consumer Care.
+
+#### Conglomerates (8 firms – 23 offers): Adani Group, Aditya Birla Group, CK Birla Group, GMR, Mahindra Group, RPG Group, Tata Administrative Services, Vedanta.
+
+#### Healthcare/Education (8 firms – 23 offers): Alkem Laboratories, Dr. Reddy's Laboratories, Haleon, Health City Cayman Islands, Optum, Sun Pharmaceuticals, IDF and IIMBx.
+
+#### Professor Nishant Verma, Chairperson of Career Development Services, IIMB, remarked, “Despite being a challenging year for the job market around the world, IIM Bangalore conducted the process very efficiently. We are also glad to share that job offers made during the process have set a new benchmark both in terms of the number of offers made and the diversity of roles across sectors.”
