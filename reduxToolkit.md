@@ -709,3 +709,7 @@ const cartSlice = createSlice({
 | Load from **local storage or API** if needed | Defining a dynamic initial state without a default value |
 
 Would you like an example where `initialState` is loaded dynamically (like fetching from an API)? 🚀
+
+
+
+## Look around yourself. 99.99% of the people will generally be: lazy, unfocused, random, non-process, non-systematic, non-improving, relying on past laurels, etc. You just need to be a bit better on these counts, and you will win The Game of Life. Hands Down.
