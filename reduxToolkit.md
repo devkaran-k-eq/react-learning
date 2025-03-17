@@ -737,3 +737,6 @@ Would you like an example where `initialState` is loaded dynamically (like fetch
 #### Healthcare/Education (8 firms – 23 offers): Alkem Laboratories, Dr. Reddy's Laboratories, Haleon, Health City Cayman Islands, Optum, Sun Pharmaceuticals, IDF and IIMBx.
 
 #### Professor Nishant Verma, Chairperson of Career Development Services, IIMB, remarked, “Despite being a challenging year for the job market around the world, IIM Bangalore conducted the process very efficiently. We are also glad to share that job offers made during the process have set a new benchmark both in terms of the number of offers made and the diversity of roles across sectors.”
+
+## So, here’s my advice — skip the MBA. Learn real skills. Join a start-up. Build something that matters. The world is changing, and the MBAs are being left behind.
+

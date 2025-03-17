@@ -60,11 +60,28 @@ export default function PostForm({ post }) {
     }
   };
 
-  const slugTransform = useCallback(
-    (value) => {
+  // slugTransform function to transform title to slug
+  const slugTransform = useCallback((value) => {
+    if (value && typeof value === "string")
+      return value
+        .trim()
+        .toLowerCase()
+        .replace(/^[a-zA-Z\d\s]+/g, "-")
+        .replace(/\s/g, "-");
 
-    }
-  )
+    return "";
+  }, []);
 
+  React.useEffect(() => {
+    const subscription = watch((value, { name }) => {
+      if (name === "title") {
+        setValue("slug", slugTransform(value.title, { shouldValidate: true }));
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [watch, slugTransform, setValue]);
   return <div>PostForm</div>;
 }

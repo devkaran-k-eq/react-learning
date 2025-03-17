@@ -24,7 +24,7 @@ export default function RTE({ label }) {
                 "image",
                 "advlist",
                 "autolink",
-                "lists",
+                "lists", 
                 "link",
                 "image",
                 "charmap",
@@ -54,3 +54,4 @@ export default function RTE({ label }) {
     </div>
   );
 }
+
