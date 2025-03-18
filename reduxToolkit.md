@@ -712,7 +712,7 @@ Would you like an example where `initialState` is loaded dynamically (like fetch
 
 
 
-## Look around yourself. 99.99% of the people will generally be: lazy, unfocused, random, non-process, non-systematic, non-improving, relying on past laurels, etc. You just need to be a bit better on these counts, and you will win The Game of Life. Hands Down.
+``` Look around yourself. 99.99% of the people will generally be: lazy, unfocused, random, non-process, non-systematic, non-improving, relying on past laurels, etc. You just need to be a bit better on these counts, and you will win The Game of Life. Hands Down. ```
 
 
 ### Top recruiters and industry breakdown
