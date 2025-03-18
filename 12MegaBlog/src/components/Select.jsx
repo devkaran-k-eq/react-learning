@@ -14,17 +14,19 @@ const Select = ({ label, className, options, ...props }, ref) => {
         className={`px-3 py-2 bg-white text-black outline-none rounded-lg focus:bg-gray-50 border border-gray-200 w-full ${className}`}
         ref={ref}
       >
+        {console.log(Object.values(options))}
         {
           // chain operator
-          options?.map((option) => {
+
+          Object.values(options)?.map((option) => (
             <option value={option} key={option}>
               {option}
             </option>
-          })
+          ))
         }
       </select>
     </div>
   );
 };
 
-export default React.forwardRef(Select)
+export default React.forwardRef(Select);

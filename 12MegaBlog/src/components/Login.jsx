@@ -22,7 +22,7 @@ function Login() {
 
       if (session) {
         const userData = await authService.getCurrentUser();
-        console.log("-login----userData----", userData);
+        console.log("-login----userData----", userData, session);
 
         if (userData) {
           dispatch(authlogin({ userData }));
