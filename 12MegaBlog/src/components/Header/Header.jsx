@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import {LogoutBtn , Container, Logo} from "../../components"
 
 function Header() {
-  const authStatus = useSelector((state) => state.auth.status);
+  const authStatus = useSelector((state) => state.authSlice.status);
   console.log("authStatus", authStatus);
 
   const navigate = useNavigate(); // new hook for forceful navuigation
@@ -33,10 +33,11 @@ function Header() {
     },
     {
       name: "Add Posts",
-      slug: "/add-posts",
+      slug: "/add-post",
       active: authStatus,
     },
   ];
+  
   return (
     <header className="py-3 shadow bg-gray-500">
       <Container>

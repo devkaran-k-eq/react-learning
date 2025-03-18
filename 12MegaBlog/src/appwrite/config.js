@@ -1,6 +1,5 @@
 import conf from "../conf/conf";
-import { Client, Databases, Storage } from "appwrite";
-
+import { Client, Databases, Storage, ID, Query } from "appwrite";
 
 class Service {
   client = new Client();
@@ -24,14 +23,14 @@ class Service {
         slug,
         {
           title,
-          slug,
+          status,
           featuredImage,
           content,
           userId,
         }
       );
     } catch (error) {
-      console.log("Error In :: CreatePost", error);
+      console.log("Error In -----------------------> :: CreatePost", error);
     }
   }
 
@@ -49,28 +48,13 @@ class Service {
         }
       );
     } catch (error) {
-      console.log("Error In :: updatePost", error);
+      console.log("Error In ----------------->:: updatePost", error);
     }
   }
 
   async deletePost(slug) {
     try {
-      return await this.databases.deleteDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteCollectionId,
-        slug
-      );
-
-      
-    } catch (error) {
-      console.log("Error In :: deletePost", error);
-      return false;
-    }
-  }
-
-  async getPost(slug) {
-    try {
-      await this.databases.getDocument(
+      await this.databases.deleteDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug
@@ -78,7 +62,20 @@ class Service {
 
       return true;
     } catch (error) {
-      console.log("Error In :: getPost", error);
+      console.log("Error In ---------------------------> :: deletePost", error);
+      return false;
+    }
+  }
+
+  async getPost(slug) {
+    try {
+      return await this.databases.getDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        slug
+      );
+    } catch (error) {
+      console.log("Error In --------------------------> :: getPost", error);
       return false;
     }
   }
@@ -91,7 +88,7 @@ class Service {
         queries
       );
     } catch (error) {
-      console.log("Error In :: getPosts", error);
+      console.log("Error In -------------------> :: getPosts", error);
       return false;
     }
   }
@@ -99,14 +96,12 @@ class Service {
   // file upload service
   async uploadFile(file) {
     try {
-      await this.bucket.createFile(
+      return await this.bucket.createFile(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         ID.unique(),
         file
       );
-
-      return true;
     } catch (error) {
       console.log("Appwrite Service :: uploadFile", error);
       return false;
@@ -115,9 +110,8 @@ class Service {
 
   async deleteFile(fileId) {
     try {
-      await this.databases.deleteFile(
-        conf.appwriteDatabaseId,
-        conf.appwriteCollectionId,
+      await this.bucket.deleteFile(
+        conf.appwriteBucketId,
         fileId
       );
       return true;

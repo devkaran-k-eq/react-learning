@@ -7,7 +7,7 @@ import appwriteService from "../../appwrite/config";
 
 export default function PostForm({ post }) {
   // get userData object from auth slice
-  const userData = useSelector((state) => state.auth.userData);
+  const userData = useSelector((state) => state.authSlice.userData);
 
   // form-hook for form handling
   const { register, handleSubmit, setValue, control, getValues, watch } =
@@ -47,7 +47,7 @@ export default function PostForm({ post }) {
       if (file) {
         const fileId = file.$id; // this id comes from image
         data.featuredImage = fileId;
-
+        console.log("----post form userdata-----", userData,file);
         const dbPost = await appwriteService.createPost({
           ...data,
           userId: userData.$id,

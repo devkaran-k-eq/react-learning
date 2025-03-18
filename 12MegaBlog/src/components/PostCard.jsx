@@ -8,7 +8,7 @@ const PostCard = ({
     title,
     featuredImage
 }) => {
-
+    console.log("----------PostCard----------", $id, title, featuredImage);
     return(
         <Link to={`${$id}`}>
             <div className="w-full bg-gray-100 rounded-xl p-4">

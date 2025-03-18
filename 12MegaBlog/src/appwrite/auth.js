@@ -35,7 +35,7 @@ export class AuthService {
 
   async login({ email, password }) {
     try {
-      return await this.account.createEmailSession(email, password);
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
       console.log("Error In :: login", error);
     }
@@ -43,19 +43,19 @@ export class AuthService {
 
   async getCurrentUser() {
     try {
-      return await this.account.get(); // After logging in, you can check the authentication state of the user.
-
-      // logged In
+      const session = await this.account.getSession("current"); // Check for an active session
+      if (session) {
+        return await this.account.get(); // Fetch the current user if a session exists
+      }
     } catch (error) {
       console.log("Error In :: getCurrentUser  ------------->", error);
     }
-
-    return null; // This is for if there is any problem in tryCatch then it will return null or you can use if-else
+    return null; // Return null if no session exists or an error occurs
   }
 
   async logout() {
     try {
-      return await this.account.logout();
+      return await this.account.deleteSession();
     } catch (error) {
       console.log("Error In :: Logout -------------->", error);
     }

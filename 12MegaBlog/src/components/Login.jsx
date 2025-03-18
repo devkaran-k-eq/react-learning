@@ -5,25 +5,29 @@ import authService from "../appwrite/auth";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Input, Logo } from "./index";
+import { Input, Logo, Button } from "./index";
 
 function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [register, handleSubmit] = useForm();
+  const { register, handleSubmit } = useForm();
 
   const login = async (data) => {
     setError("");
     try {
       const session = await authService.login(data);
+      console.log("-login----session----", session, data);
 
       if (session) {
         const userData = await authService.getCurrentUser();
+        console.log("-login----userData----", userData);
 
-        if (userData) dispatch(authlogin(userData));
-        navigate("/");
+        if (userData) {
+          dispatch(authlogin({ userData }));
+          navigate("/");
+        }
       }
     } catch (error) {
       setError(error.message);
@@ -51,28 +55,24 @@ function Login() {
             Sign Up
           </Link>
         </p>
-
-        {error && <p className="text-red-500 mt-8 text-center">{error}</p>}
-
-        <form action={handleSubmit(login)} className="mt-8">
+        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+        <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">
             <Input
-              label="email"
+              label="Email: "
+              placeholder="Enter your email"
               type="email"
-              placeholder="Enter Your Email"
               {...register("email", {
                 required: true,
                 validate: {
-                  matchPattern: (value) =>
-                    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
-                      value
-                    ) || "Enter Valid email address",
+                  matchPatern: (value) =>
+                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                    "Email address must be a valid address",
                 },
               })}
             />
-
             <Input
-              label="password"
+              label="Passwords: "
               type="password"
               placeholder="Enter Your Password"
               {...register("password", {
@@ -80,7 +80,9 @@ function Login() {
               })}
             />
 
-            <button type="submit" className="w-full">Sign In</button>
+            <Button type="submit" className="w-full">
+              Sign in
+            </Button>
           </div>
         </form>
       </div>
@@ -88,5 +90,4 @@ function Login() {
   );
 }
 
-
-export default Login
+export default Login;

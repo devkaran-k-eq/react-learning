@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Logo, Input } from "./index";
+import { Logo, Input, Button } from "./index";
 import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -9,7 +9,7 @@ import authService from "../appwrite/auth";
 
 function SignUp() {
   const [error, setError] = useState("");
-  const [register, handleSubmit] = useForm();
+  const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,7 +21,9 @@ function SignUp() {
       if (session) {
         const userData = await authService.getCurrentUser();
 
+        console.log("******---****", data, userData);
         if (userData) dispatch(login(userData));
+        navigate("/");
       }
     } catch (error) {
       setError(error.message);
@@ -53,7 +55,7 @@ function SignUp() {
 
         {error && <p className="text-red-500 mt-8 text-center">{error}</p>}
 
-        <form action={handleSubmit(create)}>
+        <form onSubmit={handleSubmit(create)}>
           <div className="space-y-5">
             <Input
               label="Full Name: "
@@ -86,7 +88,9 @@ function SignUp() {
               })}
             />
 
-            <button type="submit" className="w-full">Sign Up</button>
+            <Button type="submit" className="w-full">
+              Sign Up
+            </Button>
           </div>
         </form>
       </div>
