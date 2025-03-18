@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import {LogoutBtn , Container, Logo} from "../../components"
 
 function Header() {
-  const authStatus = useSelector((state) => state.status);
+  const authStatus = useSelector((state) => state.auth.status);
   console.log("authStatus", authStatus);
 
   const navigate = useNavigate(); // new hook for forceful navuigation

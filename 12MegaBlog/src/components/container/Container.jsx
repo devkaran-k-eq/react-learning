@@ -1,10 +1,10 @@
 import React from "react";
 
-function Container(){
+function Container({ children }) {
 
-    return(
-        <div>Conatainer</div>
-    )
+
+    
+  return <div className="w-full mx-1">{children}</div>;
 }
 
-export default Container
+export default Container;

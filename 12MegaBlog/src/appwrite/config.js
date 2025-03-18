@@ -55,13 +55,13 @@ class Service {
 
   async deletePost(slug) {
     try {
-      await this.databases.deleteDocument(
+      return await this.databases.deleteDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug
       );
 
-      return true;
+      
     } catch (error) {
       console.log("Error In :: deletePost", error);
       return false;
@@ -132,6 +132,6 @@ class Service {
   }
 }
 
-export const service = new Service();
+const service = new Service();
 
 export default service;
