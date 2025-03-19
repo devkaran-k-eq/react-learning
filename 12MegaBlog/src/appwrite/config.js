@@ -22,13 +22,13 @@ class Service {
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
+        ID.unique(), // Generate a unique document ID for the post
+      {
+        title,
+        status,
+        featuredImage,
+        content,
         userId,
-        {
-          title,
-          status,
-          featuredImage,
-          content,
-          userId,
         }
       );
     } catch (error) {
