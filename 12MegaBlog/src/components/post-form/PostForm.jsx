@@ -15,7 +15,7 @@ export default function PostForm({ post }) {
     useForm({
       defaultValues: {
         title: post?.title || "",
-        slug: post?.$id || "",
+        // slug: post?.$id || "",
         status: post?.status || "active",
         content: post?.content || "",
       },
@@ -25,20 +25,24 @@ export default function PostForm({ post }) {
 
   // submit function for form which get datas from form and send to appwrite
   const submit = async (data) => {
-    console.log("-----submit---", data, userData);
+    console.log("-----submit---", data, userData.name);
 
     if (post) {
       const file = data.image[0]
-        ? appwriteService.uploadFile(data.image[0])
+        ? await appwriteService.uploadFile(data.image[0])
         : null;
+      console.log("dbPost in post", data.image[0]);
       if (file) {
-        appwriteService.deleteFile(post.featuredImage);
+        await appwriteService.deleteFile(post.featuredImage);
+
+        console.log("Error in deletefile");
       }
 
-      const dbPost = await appwriteService.updatePost(data.$id, {
+      const dbPost = await appwriteService.updatePost({
         ...data,
-        featuredImage: file ? file.$id : undefined,
+        userId: userData.$id,
       });
+      console.log("dbPost in post", data);
 
       if (dbPost) {
         navigate(`/post/${dbPost.$id}`);
@@ -71,28 +75,28 @@ export default function PostForm({ post }) {
   };
 
   // slugTransform function to transform title to slug
-  const slugTransform = useCallback((value) => {
-    if (value && typeof value === "string")
-      return value
-        .trim()
-        .toLowerCase()
-        .replace(/^[a-zA-Z\d\s]+/g, "-")
-        .replace(/\s/g, "-");
+  // const slugTransform = useCallback((value) => {
+  //   if (value && typeof value === "string")
+  //     return value
+  //       .trim()
+  //       .toLowerCase()
+  //       .replace(/^[a-zA-Z\d\s]+/g, "-")
+  //       .replace(/\s/g, "-");
 
-    return "";
-  }, []);
+  //   return "";
+  // }, []);
 
-  React.useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === "title") {
-        setValue("slug", slugTransform(value.title, { shouldValidate: true }));
-      }
-    });
+  // React.useEffect(() => {
+  //   const subscription = watch((value, { name }) => {
+  //     if (name === "title") {
+  //       setValue("slug", slugTransform(value.title, { shouldValidate: true }));
+  //     }
+  //   });
 
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [watch, slugTransform, setValue]);
+  //   return () => {
+  //     subscription.unsubscribe();
+  //   };
+  // }, [watch, slugTransform, setValue]);
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
       <div className="w-2/3 px-2">
@@ -102,7 +106,7 @@ export default function PostForm({ post }) {
           className="mb-4"
           {...register("title", { required: true })}
         />
-        <Input
+        {/* <Input
           label="Slug :"
           placeholder="Slug"
           className="mb-4"
@@ -112,7 +116,7 @@ export default function PostForm({ post }) {
               shouldValidate: true,
             });
           }}
-        />
+        /> */}
         <RTE
           label="Content :"
           name="content"

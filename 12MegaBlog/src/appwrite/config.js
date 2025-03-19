@@ -17,38 +17,35 @@ class Service {
 
   async createPost({ title, slug, featuredImage, content, status, userId }) {
     try {
-      
-      
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         ID.unique(), // Generate a unique document ID for the post
-      {
-        title,
-        status,
-        featuredImage,
-        content,
-        userId,
+        {
+          title,
+          status,
+          featuredImage,
+          content,
+          userId,
         }
       );
     } catch (error) {
       console.log("Error In -----------------------> :: CreatePost", error);
       console.log("From createDocument", userId, conf.appwriteCollectionId);
-      
     }
   }
 
-  async updatePost(slug, { title, featuredImage, content, status }) {
+  async updatePost({ title, featuredImage, content, status, userId }) {
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        slug,
+        userId,
         {
           title,
           content,
-          featuredImage,
           status,
+          featuredImage,
         }
       );
     } catch (error) {
@@ -115,10 +112,7 @@ class Service {
 
   async deleteFile(fileId) {
     try {
-      await this.bucket.deleteFile(
-        conf.appwriteBucketId,
-        fileId
-      );
+      await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
       return true;
     } catch (error) {
       console.log("Appwrite Service :: deleteFile", error);

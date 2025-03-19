@@ -18,6 +18,8 @@ function App() {
         if (userData) {
           dispatch(login({ userData }));
           console.log("--------login", userData);
+          console.log("--------userData.name", userData.name);
+
         } else {
           dispatch(logout());
           console.log("--------logout", userData);
