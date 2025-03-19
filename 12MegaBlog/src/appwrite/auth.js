@@ -1,15 +1,15 @@
 import conf from "../conf/conf";
-import { Client, Account, ID, Users } from "appwrite";
+import { Client, Account, ID } from "appwrite";
 
  class AuthService {
   client = new Client();
   account;
-  users = new Users(client);
+  // users = new Users(client);
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId)
-      .setKey(conf.appwriteAPIkey);
+      
 
     this.account = new Account(this.client);
     
@@ -68,15 +68,15 @@ import { Client, Account, ID, Users } from "appwrite";
     }
   }
 
-  async  listAllUsers() {
-    try {
-        const response = await users.list();
-        console.log(response);
-    } catch (error) {
-        console.error(error);
-    }
+  // async  listAllUsers() {
+  //   try {
+  //       const response = await users.list();
+  //       console.log(response);
+  //   } catch (error) {
+  //       console.error(error);
+  //   }
 
-  }
+  // }
 }
 
 const authService = new AuthService();

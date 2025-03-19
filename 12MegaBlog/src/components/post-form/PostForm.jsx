@@ -24,9 +24,8 @@ export default function PostForm({ post }) {
   const navigate = useNavigate();
 
   // submit function for form which get datas from form and send to appwrite
+  console.log("-----submit---", userData.name);
   const submit = async (data) => {
-    console.log("-----submit---", data, userData.name);
-
     if (post) {
       const file = data.image[0]
         ? await appwriteService.uploadFile(data.image[0])
@@ -44,15 +43,17 @@ export default function PostForm({ post }) {
         content: data.content,
         status: data.status,
         featuredImage: file ? file.$id : post.featuredImage,
+        name: data.name,
+        email: data.email
       });
-      console.log("dbPost in post", data);
+      console.log("dbPost in post", dbPost);
 
       if (dbPost) {
         navigate(`/post/${dbPost.$id}`);
       }
     } else {
       const file = await appwriteService.uploadFile(data.image[0]);
-      console.log("file", data.image[0]);
+      console.log("not uploading file", data);
 
       if (file) {
         const fileId = file.$id; // this id comes from image
@@ -61,14 +62,24 @@ export default function PostForm({ post }) {
           "----post form userdata-----",
           userData,
           file,
-          userData.$id
+          userData.$id,
+          userData.name,
+          userData.email
         );
+
+        if (!userData) {
+          console.error("User data is not available. Please log in.");
+          alert("You must be logged in to create a post.");
+          return;
+        }
         const dbPost = await appwriteService.createPost({
-          ...data
-          // userId: userData.$id,
+          ...data,
+          name: userData.name,
+          email: userData.email,
+          userId: userData.$id,
         });
 
-        console.log("dbPost", dbPost);
+        
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);

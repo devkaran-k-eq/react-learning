@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, PostCard } from "../components";
 import apppwriteService from "../appwrite/config";
-import { login } from "../store/authSlice";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -9,7 +8,34 @@ export default function Home() {
     apppwriteService.getPosts().then((post) => {
       setPosts(post.documents ? post.documents : []);
     });
+
+
+
+
+    // authService.listAllUsers().then(
+    //     (response) => {
+    //         console.log("Responsce Coming From", response);
+            
+    //     }
+    // )
+
+
+
+
+
   }, []);
+
+
+  
+
+
+
+
+
+
+
+
+
 
   console.log("Post from home", posts);
     if (posts.length === 0) {

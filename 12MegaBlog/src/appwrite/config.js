@@ -15,19 +15,21 @@ class Service {
     this.bucket = new Storage(this.client);
   }
 
-  async createPost({ title, slug, featuredImage, content, status, userId }) {
+  async createPost({ title, featuredImage, content, status, name, email, userId}) {
     try {
-      const uniqueId = ID.unique(); // Generate a unique document ID
+      const uniqueId = ID.unique();
       const response = await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        uniqueId, // Use the unique ID as the document ID
+        uniqueId,
         {
           title,
           status,
           featuredImage,
           content,
-          userId,
+          name,
+          email,
+          userId, // Include userId here
         }
       );
       console.log("Created Post ID:", uniqueId); // Log the unique ID
@@ -38,7 +40,7 @@ class Service {
     }
   }
 
-  async updatePost({ id, title, featuredImage, content, status }) {
+  async updatePost({ id, title, featuredImage, content, status, name, email }) {
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
@@ -49,6 +51,8 @@ class Service {
           content,
           status,
           featuredImage,
+          name,
+          email,
         }
       );
     } catch (error) {
