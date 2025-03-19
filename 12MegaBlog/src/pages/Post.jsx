@@ -26,7 +26,7 @@ export default function Post() {
     } else {
       navigate("/");
     }
-    console.log("Post", post);
+    console.log("userData ===>", post);
 
     authService
       .getCurrentUser()
@@ -52,7 +52,7 @@ export default function Post() {
       <Container>
         <div className="w-full border rounded-2xl m-2 flex items-center justify-between p-4">
           {/* Left Side: Title */}
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+          <h1 className="text-2xl font-bold">Title: {post.title}</h1>
 
           {/* Right Side: Logo and Username */}
           <div className="flex items-center space-x-3">
@@ -63,7 +63,7 @@ export default function Post() {
               </span>
             </div>
             {/* Username */}
-            <h1 className="text-xl font-bold">{userName}</h1>
+            <h1 className="text-xl font-bold">{userName.toUpperCase()}</h1>
           </div>
         </div>
 
@@ -87,13 +87,11 @@ export default function Post() {
             </div>
           )}
         </div>
-        <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+        <div className="border rounded-2xl m-2 h-fit italic font-bold">
+          <div className="browser-css text-2xl text-justify m-2">
+            {parse(post.content)}
+          </div>
         </div>
-        <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{userName}</h1>
-        </div>
-        <div className="browser-css">{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;

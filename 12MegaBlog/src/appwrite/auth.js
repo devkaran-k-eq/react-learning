@@ -1,16 +1,18 @@
 import conf from "../conf/conf";
-import { Client, Account, ID } from "appwrite";
+import { Client, Account, ID, Users } from "appwrite";
 
-export class AuthService {
+ class AuthService {
   client = new Client();
   account;
-
+  users = new Users(client);
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrl)
-      .setProject(conf.appwriteProjectId);
+      .setProject(conf.appwriteProjectId)
+      .setKey(conf.appwriteAPIkey);
 
     this.account = new Account(this.client);
+    
   }
 
   async createAccount({ email, password, name }) {
@@ -64,6 +66,16 @@ export class AuthService {
     } catch (error) {
       console.log("Error In :: Logout -------------->", error);
     }
+  }
+
+  async  listAllUsers() {
+    try {
+        const response = await users.list();
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+
   }
 }
 

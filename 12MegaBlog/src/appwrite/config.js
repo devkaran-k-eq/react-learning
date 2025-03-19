@@ -17,10 +17,11 @@ class Service {
 
   async createPost({ title, slug, featuredImage, content, status, userId }) {
     try {
-      return await this.databases.createDocument(
+      const uniqueId = ID.unique(); // Generate a unique document ID
+      const response = await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        ID.unique(), // Generate a unique document ID for the post
+        uniqueId, // Use the unique ID as the document ID
         {
           title,
           status,
@@ -29,18 +30,20 @@ class Service {
           userId,
         }
       );
+      console.log("Created Post ID:", uniqueId); // Log the unique ID
+      return response;
     } catch (error) {
       console.log("Error In -----------------------> :: CreatePost", error);
-      console.log("From createDocument", userId, conf.appwriteCollectionId);
+      throw error;
     }
   }
 
-  async updatePost({ title, featuredImage, content, status, userId }) {
+  async updatePost({ id, title, featuredImage, content, status }) {
     try {
       return await this.databases.updateDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        userId,
+        id, // Use the unique document ID here
         {
           title,
           content,
@@ -50,6 +53,7 @@ class Service {
       );
     } catch (error) {
       console.log("Error In ----------------->:: updatePost", error);
+      throw error;
     }
   }
 

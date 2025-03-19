@@ -4,7 +4,7 @@ function Container({ children }) {
 
 
     
-  return <div className="w-full mx-1">{children}</div>;
+  return <div className="w-full">{children}</div>;
 }
 
 export default Container;

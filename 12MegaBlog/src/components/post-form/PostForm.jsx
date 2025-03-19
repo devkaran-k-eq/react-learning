@@ -39,8 +39,11 @@ export default function PostForm({ post }) {
       }
 
       const dbPost = await appwriteService.updatePost({
-        ...data,
-        userId: userData.$id,
+        id: post.$id, // Pass the unique document ID
+        title: data.title,
+        content: data.content,
+        status: data.status,
+        featuredImage: file ? file.$id : post.featuredImage,
       });
       console.log("dbPost in post", data);
 
@@ -61,8 +64,8 @@ export default function PostForm({ post }) {
           userData.$id
         );
         const dbPost = await appwriteService.createPost({
-          ...data,
-          userId: userData.$id,
+          ...data
+          // userId: userData.$id,
         });
 
         console.log("dbPost", dbPost);
