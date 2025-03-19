@@ -26,6 +26,7 @@ function Login() {
 
         if (userData) {
           dispatch(authlogin({ userData }));
+          console.log("Redux state after login:", store.getState()); // Debug Redux state
           navigate("/");
         }
       }

@@ -8,7 +8,7 @@ class Service {
 
   constructor() {
     this.client
-      .setEndpoint(conf.appwriteBucketId) // Your API Endpoint
+      .setEndpoint(conf.appwriteUrl) // Your API Endpoint
       .setProject(conf.appwriteProjectId); // Your project ID
 
     this.databases = new Databases(this.client);
@@ -17,10 +17,12 @@ class Service {
 
   async createPost({ title, slug, featuredImage, content, status, userId }) {
     try {
+      
+      
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        slug,
+        userId,
         {
           title,
           status,
@@ -31,6 +33,8 @@ class Service {
       );
     } catch (error) {
       console.log("Error In -----------------------> :: CreatePost", error);
+      console.log("From createDocument", userId, conf.appwriteCollectionId);
+      
     }
   }
 
@@ -96,10 +100,11 @@ class Service {
   // file upload service
   async uploadFile(file) {
     try {
+      const uniqueId = ID.unique();
       return await this.bucket.createFile(
-        conf.appwriteDatabaseId,
-        conf.appwriteCollectionId,
-        ID.unique(),
+        // conf.appwriteDatabaseId,
+        conf.appwriteBucketId,
+        uniqueId,
         file
       );
     } catch (error) {

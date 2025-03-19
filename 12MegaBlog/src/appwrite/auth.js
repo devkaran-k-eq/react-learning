@@ -23,7 +23,7 @@ export class AuthService {
       );
 
       if (userAccount) {
-        this.login(email, password);
+        return await this.login(email, password);
       } else {
         return userAccount;
       }
@@ -48,10 +48,10 @@ export class AuthService {
 
   async getCurrentUser() {
     try {
-      const session = await this.account.getSession("current"); // Check for an active session
-      if (session) {
+      // const session = await this.account.getSession("current"); // Check for an active session
+      // if (session) {
         return await this.account.get(); // Fetch the current user if a session exists
-      }
+      // }
     } catch (error) {
       console.log("Error In :: getCurrentUser  ------------->", error);
     }
@@ -60,7 +60,7 @@ export class AuthService {
 
   async logout() {
     try {
-      return await this.account.deleteSession();
+      return await this.account.deleteSession("current");
     } catch (error) {
       console.log("Error In :: Logout -------------->", error);
     }

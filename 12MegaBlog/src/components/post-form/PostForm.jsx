@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Input, RTE, Select } from "../index";
 import appwriteService from "../../appwrite/config";
+import { ID } from "appwrite";
 
 export default function PostForm({ post }) {
   // get userData object from auth slice
@@ -24,11 +25,12 @@ export default function PostForm({ post }) {
 
   // submit function for form which get datas from form and send to appwrite
   const submit = async (data) => {
+    console.log("-----submit---", data, userData);
+
     if (post) {
       const file = data.image[0]
         ? appwriteService.uploadFile(data.image[0])
         : null;
-
       if (file) {
         appwriteService.deleteFile(post.featuredImage);
       }
@@ -43,16 +45,23 @@ export default function PostForm({ post }) {
       }
     } else {
       const file = await appwriteService.uploadFile(data.image[0]);
+      console.log("file", data.image[0]);
 
       if (file) {
         const fileId = file.$id; // this id comes from image
         data.featuredImage = fileId;
-        console.log("----post form userdata-----", userData,file);
+        console.log(
+          "----post form userdata-----",
+          userData,
+          file,
+          userData.$id
+        );
         const dbPost = await appwriteService.createPost({
           ...data,
-          userId: userData.$id,
+          userId: ID.unique(),
         });
-
+        console.log("dbPost", dbPost);
+        
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
         }
@@ -116,7 +125,7 @@ export default function PostForm({ post }) {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
+          {...register("image", { required: post })}
         />
         {post && (
           <div className="w-full mb-4">
@@ -135,7 +144,7 @@ export default function PostForm({ post }) {
         />
         <Button
           type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
+          bgcolor={post ? "bg-green-500" : undefined}
           className="w-full"
         >
           {post ? "Update" : "Submit"}
