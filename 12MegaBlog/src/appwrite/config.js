@@ -1,4 +1,4 @@
-import conf from "../conf/conf";
+import conf from "../conf/conf.js";
 import { Client, Databases, Storage, ID, Query } from "appwrite";
 
 class Service {
@@ -78,10 +78,12 @@ class Service {
 
   async getPost(slug) {
     try {
+      console.log("Fetching post with slug:", slug);
       return await this.databases.getDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug
+        
       );
     } catch (error) {
       console.log("Error In --------------------------> :: getPost", error);

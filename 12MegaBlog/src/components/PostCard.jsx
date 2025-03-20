@@ -1,7 +1,9 @@
 import React, { useId } from "react";
 import { Link } from "react-router-dom";
 import appwriteService from "../appwrite/config";
+import { useParams } from "react-router-dom";
 
+// const { slug } = useParams();
 const PostCard = ({
   $id, // we use $ because id comes from appwrite
   title,

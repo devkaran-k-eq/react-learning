@@ -79,6 +79,8 @@ export default function PostForm({ post }) {
           userId: userData.$id,
         });
 
+        console.log("dbPost Coming From", dbPost);
+        console.log("Data Coming From Form", data);
         
 
         if (dbPost) {

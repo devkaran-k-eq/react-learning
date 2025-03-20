@@ -1,43 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Container, PostCard } from "../components";
-import apppwriteService from "../appwrite/config";
+import appwriteService from "../appwrite/config";
 
 export default function Home() {
+
   const [posts, setPosts] = useState([]);
+
+
   useEffect(() => {
-    apppwriteService.getPosts().then((post) => {
-      setPosts(post.documents ? post.documents : []);
+    appwriteService.getPosts([]).then((fromPosts) => {
+      //   console.log("---------", posts, userData);
+      if (fromPosts) {
+        setPosts(fromPosts.documents);
+        console.log("Inside Home", fromPosts.documents);
+        console.log("Inside Home -----> Array",posts);
+        
+      }
     });
-
-
-
-
-    // authService.listAllUsers().then(
-    //     (response) => {
-    //         console.log("Responsce Coming From", response);
-            
-    //     }
-    // )
-
-
-
-
-
   }, []);
 
 
-  
 
-
-
-
-
-
-
-
-
-
-  console.log("Post from home", posts);
+  // console.log("Post from home", posts);
     if (posts.length === 0) {
       return (
         <div className="w-full py-8 mt-4 text-center">
