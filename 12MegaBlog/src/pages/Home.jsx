@@ -13,7 +13,6 @@ export default function Home() {
       if (fromPosts) {
         setPosts(fromPosts.documents);
         console.log("Inside Home", fromPosts.documents);
-        console.log("Inside Home -----> Array", posts);
       }
     });
   }, []);
@@ -32,7 +31,7 @@ export default function Home() {
               ) : (
                 <h1 className="text-2xl font-bold hover:text-gray-500">
                   Login Or SignUp to Enjoy Our Engaging Post ... ❤️❤️
-                  <span>{posts.className}</span>
+                  
                 </h1>
               )}
             </div>

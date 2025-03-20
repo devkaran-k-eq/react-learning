@@ -24,7 +24,15 @@ export default function PostForm({ post }) {
 
   // submit function for form which get datas from form and send to appwrite
   console.log("'userData.name' in PostForm rfce -------->", userData.name);
+
+
+
+
   const submit = async (data) => {
+
+
+
+
     if (post) {
       const file = data.image[0]
         ? await appwriteService.uploadFile(data.image[0])
@@ -57,20 +65,24 @@ export default function PostForm({ post }) {
       if (file) {
         const fileId = file.$id; // this id comes from image
         data.featuredImage = fileId;
-        console.log(
-          "----post form userdata-----",
-          userData,
-          file,
-          userData.$id,
-          userData.name,
-          userData.email
-        );
 
-        if (!userData) {
-          console.error("User data is not available. Please log in.");
-          alert("You must be logged in to create a post.");
-          return;
-        }
+
+
+        // console.log(
+        //   "----post form userdata-----",
+        //   userData,
+        //   file,
+        //   userData.$id,
+        //   userData.name,
+        //   userData.email
+        // );
+
+        // if (!userData) {
+        //   console.error("User data is not available. Please log in.");
+        //   alert("You must be logged in to create a post.");
+        //   return;
+        // }
+        
         const dbPost = await appwriteService.createPost({
           ...data,
           name: userData.name,
@@ -87,6 +99,9 @@ export default function PostForm({ post }) {
         }
       }
     }
+
+
+
   };
 
   return (
