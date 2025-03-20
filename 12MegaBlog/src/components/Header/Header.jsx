@@ -61,7 +61,7 @@ function Header() {
             </Link>
           </div>
 
-          <ul className="flex ml-auto items-center">
+          <ul className="flex  items-center">
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>
@@ -83,7 +83,7 @@ function Header() {
 
           </ul>
             {userData ? (
-              <div className="flex items-center space-x-3">
+              <div className="ml-auto flex items-center space-x-3 mr-3">
                 
                 <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                   <span className="font-bold text-2xl text-gray-600 dark:text-gray-300">

@@ -14,7 +14,7 @@ export default function Post() {
 
   const userData = useSelector((state) => state.authSlice.userData);
 
-  // const isAuthor = true
+  const isAuthor = post && userData ? post.userId === userData.$id : false;
   useEffect(() => {
     if (slug) {
       appwriteService.getPost(slug).then((onePost) => {
@@ -48,7 +48,16 @@ export default function Post() {
     <div className="py-8">
       <Container>
         <div className="w-full border rounded-2xl m-2 flex items-center justify-between p-4">
-          <h1 className="text-2xl font-bold">Title: {post.title}</h1>
+          <h1 className="text-2xl font-semibold">
+            Date:{" "}
+            {post?.$createdAt
+              ? new Date(post.$createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              : "Unknown Date"}
+          </h1>
 
           <div className="flex items-center space-x-3">
             <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
@@ -62,12 +71,6 @@ export default function Post() {
         </div>
 
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-          {console.log("post.featuredImage--->", post.featuredImage)}
-          {console.log("Slug->", slug)}
-          {console.log("Slug->", slug)}
-          {console.log("Slug->", slug)}
-          {console.log("Slug->", slug)}
-          {console.log("Slug->", slug)}
           {post.featuredImage ? (
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
@@ -80,23 +83,31 @@ export default function Post() {
             </div>
           )}
 
-          {true && (
+          {isAuthor && (
             <div className="absolute right-6 top-6">
               <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
+                <Button bgcolor="bg-green-500" className="mr-3">
                   Edit
                 </Button>
               </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
+              <Button bgcolor="bg-red-500" onClick={deletePost}>
                 Delete
               </Button>
             </div>
           )}
         </div>
-        <div className="w-full mb-6">
+        <div className="border rounded-2xl m-4 h-fit bg-amber-50">
           <h1 className="text-2xl font-bold">{post.title}</h1>
         </div>
-       { post.content ? <div className="browser-css">{parse(post.content)}</div> : <p> No Content Available...</p>}
+        {post.content ? (
+          <div className="border rounded-2xl m-4 h-fit bg-amber-50">
+            <div className="browser-css text-2xl text-justify m-9">
+              {parse(post.content)}
+            </div>{" "}
+          </div>
+        ) : (
+          <p> No Content Available...</p>
+        )}
       </Container>
     </div>
   ) : (

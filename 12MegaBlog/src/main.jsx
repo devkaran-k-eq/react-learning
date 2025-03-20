@@ -13,7 +13,6 @@ import AddPost from "./pages/AddPost.jsx";
 import EditPost from "./pages/EditPost.jsx";
 import Login from "./pages/Login.jsx";
 import Post from "./pages/Post.jsx";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        
       },
       {
         path: "/login",
