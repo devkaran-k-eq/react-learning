@@ -16,13 +16,13 @@ function SignUp() {
   const create = async (data) => {
     setError("");
     try {
-      const {email, password, name} = data;
-      const session = await authService.createAccount({email, password, name});
+      // const {email, password, name} = data;
+      const session = await authService.createAccount(data);
 
       if (session) {
         const userData = await authService.getCurrentUser();
 
-        console.log("******---****", data, userData);
+        console.log("From SignUp rfc----------->", data, userData);
         if (userData) dispatch(login(userData));
         navigate("/");
       }

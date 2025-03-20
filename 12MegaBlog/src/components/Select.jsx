@@ -14,7 +14,7 @@ const Select = ({ label, className, options, ...props }, ref) => {
         className={`px-3 py-2 bg-white text-black outline-none rounded-lg focus:bg-gray-50 border border-gray-200 w-full ${className}`}
         ref={ref}
       >
-        {console.log(Object.values(options))}
+        {console.log("Options tag from option rfce----->",Object.values(options))}
         {
           // chain operator
 

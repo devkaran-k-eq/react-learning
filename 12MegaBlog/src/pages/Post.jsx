@@ -10,7 +10,6 @@ export default function Post() {
 
   const { slug } = useParams();
   const navigate = useNavigate();
-  console.log("Tyep Of", typeof slug);
 
   const userData = useSelector((state) => state.authSlice.userData);
 
@@ -26,14 +25,9 @@ export default function Post() {
     }
   }, [slug, navigate]);
 
-  console.log("Coming Inside Post Slug------->", slug);
-  console.log("Coming Inside Post Slug name------->", post.name);
-  console.log("Coming Inside Post Slug email------->", post.title);
-  console.log("Coming Inside Post Slug $id------->", post.$id);
-  console.log(
-    "Coming Inside Post Slug featured Image------->",
-    post.featuredImage
-  );
+
+  // console.log("Coming Inside Post Slug email------->", post.title);
+
   const deletePost = () => {
     appwriteService.deletePost(post.$id).then((status) => {
       if (status) {
@@ -42,8 +36,7 @@ export default function Post() {
       }
     });
   };
-  //   return ( <h1>Deva</h1>
-  //   )
+
   return post ? (
     <div className="py-8">
       <Container>

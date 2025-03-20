@@ -9,19 +9,8 @@ function Header() {
   const userData = useSelector((state) => state.authSlice.userData);
   
   const navigate = useNavigate(); // new hook for forceful navuigation
-  console.log("authStatus ----------->", authStatus);
-  console.log("userData --------->", userData);
-
-  // useEffect(() => {
-  //   authService
-  //     .getCurrentUser()
-  //     .then((userData) => {
-  //       console.log("userData from Post", setUsername(userData.name));
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching user: ++++++++++++++", error); // Log the error
-  //     });
-  // }, [authStatus]);
+  console.log("Debug: In Header.jsx rfce redux authStatus ----------->", authStatus);
+  console.log("Debug: In Header.jsx rfce redux userData --------->", userData);
 
   const navItems = [
     {

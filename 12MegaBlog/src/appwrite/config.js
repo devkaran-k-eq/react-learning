@@ -32,7 +32,7 @@ class Service {
           userId, // Include userId here
         }
       );
-      console.log("Created Post ID:", uniqueId); // Log the unique ID
+      // console.log("Created Post ID:", uniqueId); // Log the unique ID
       return response;
     } catch (error) {
       console.log("Error In -----------------------> :: CreatePost", error);
