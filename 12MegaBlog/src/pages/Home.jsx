@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, PostCard } from "../components";
 import appwriteService from "../appwrite/config";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const userData = useSelector((state) => state.authSlice.userData);
 
   useEffect(() => {
     appwriteService.getPosts([]).then((fromPosts) => {
@@ -23,7 +25,7 @@ export default function Home() {
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
-              {posts.length ? (
+              {userData?.email ? (
                 <h1 className="text-2xl font-bold hover:text-gray-500">
                   Please Wait Page is Loading......
                 </h1>

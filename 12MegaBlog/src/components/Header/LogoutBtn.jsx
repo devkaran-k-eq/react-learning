@@ -12,7 +12,7 @@ export default function LogoutBtn() {
   const logoutHandler = () => {
     authService.logout().then(() => {
       dispatch(logout());
-      navigate("/")
+      navigate("/signup")
     });
   };
   return (
