@@ -14,7 +14,7 @@ const PostCard = ({
   console.log("----------PostCard----------", $id, title, featuredImage);
   return (
     <Link to={`/post/${$id}`}>
-      <div className="w-full bg-gray-100 rounded-xl p-4">
+      <div className="w-full bg-gray-100 hover:bg-[#F3C301] rounded-xl p-4">
         <div className="mb-4 justify-center w-full">
           <img
             src={appwriteService.getFilePreview(featuredImage)}

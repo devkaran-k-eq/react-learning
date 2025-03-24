@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Input, RTE, Select } from "../index";
 import appwriteService from "../../appwrite/config";
-import { ID } from "appwrite";
+
 
 export default function PostForm({ post }) {
   // get userData object from auth slice
@@ -105,7 +105,7 @@ export default function PostForm({ post }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap text-white">
       <div className="w-2/3 px-2">
         <Input
           label="Title :"
@@ -146,7 +146,7 @@ export default function PostForm({ post }) {
         />
         <Button
           type="submit"
-          bgcolor={post ? "bg-green-500 hover:bg-green-700" : undefined}
+          bgcolor={post ? "bg-yellow-500 hover:bg-green-700" : "bg-red-600 hover:bg-green-700"}
           className="w-full"
         >
           {post ? "Update" : "Submit"}

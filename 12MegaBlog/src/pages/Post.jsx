@@ -38,7 +38,7 @@ export default function Post() {
   };
 
   return post ? (
-    <div className="py-8">
+    <div className="py-8 text-white">
       <Container>
         <div className="w-full border rounded-2xl m-2 flex items-center justify-between p-4">
           <h1 className="text-2xl font-semibold">

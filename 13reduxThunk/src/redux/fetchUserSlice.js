@@ -35,9 +35,9 @@ const fetchUserSlice = createSlice({
         state.error = action.error.message;
         console.log("error in fetching data");
       })
-      .addCase(deleteData, (state,action) => {
-        state.users = state.users.filter( (user) => user.id !== action.payload)
-      })
+      .addCase(deleteData, (state, action) => {
+        state.users = state.users.filter((user) => user.id !== action.payload);
+      });
   },
 });
 

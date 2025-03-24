@@ -7,9 +7,12 @@ import { LogoutBtn, Container, Logo } from "../../components";
 function Header() {
   const authStatus = useSelector((state) => state.authSlice.status);
   const userData = useSelector((state) => state.authSlice.userData);
-  
+
   const navigate = useNavigate(); // new hook for forceful navuigation
-  console.log("Debug: In Header.jsx rfce redux authStatus ----------->", authStatus);
+  console.log(
+    "Debug: In Header.jsx rfce redux authStatus ----------->",
+    authStatus
+  );
   console.log("Debug: In Header.jsx rfce redux userData --------->", userData);
 
   const navItems = [
@@ -41,7 +44,7 @@ function Header() {
   ];
 
   return (
-    <header className="py-3 shadow bg-gray-500 rounded-2xl">
+    <header className="py-3 shadow bg-[#97ffc8] rounded-2xl">
       <Container>
         <nav className="flex">
           <div className="mr-4">
@@ -56,7 +59,7 @@ function Header() {
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className="inline-block py-2 px-6 duration-200 hover:bg-blue-100 rounded-full font-bold"
+                    className="inline-block py-2 px-6 duration-200 hover:bg-[#F3C301] rounded-full font-bold"
                   >
                     {item.name}
                   </button>
@@ -69,23 +72,18 @@ function Header() {
                 <LogoutBtn />
               </li>
             )}
-
           </ul>
-            {userData ? (
-              <div className="ml-auto flex items-center space-x-3 mr-3">
-                
-                <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                  <span className="font-bold text-2xl text-gray-600 dark:text-gray-300">
-                    {userData.name.charAt(0).toUpperCase()}
-                  </span>
-                </div>
-                
-                <h6 className="font-bold ml-0">
-                  {userData.name.toUpperCase()}
-                </h6>
+          {userData ? (
+            <div className="ml-auto flex items-center space-x-3 mr-3">
+              <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                <span className="font-bold text-2xl text-gray-600 dark:text-gray-300">
+                  {userData.name.charAt(0).toUpperCase()}
+                </span>
               </div>
-            ) : null
-          }
+
+              <h6 className="font-bold ml-0">{userData.name.toUpperCase()}</h6>
+            </div>
+          ) : null}
         </nav>
       </Container>
     </header>
