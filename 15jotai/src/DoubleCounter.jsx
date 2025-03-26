@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { doubleCounterAtom } from "./atoms";
+import { doubleCounterAtom } from "./atom/atoms";
 
 function DoubleCounter() {
   const [devkaran] = useAtom(doubleCounterAtom);

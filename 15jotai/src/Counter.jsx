@@ -1,6 +1,7 @@
 import React from "react";
 import { useAtom } from "jotai";
-import { counterAtom } from "./atoms";
+import { counterAtom } from "./atom/atoms";
+import DoubleCounter from "./DoubleCounter";
 
 const Counter = () => {
     const [count, setCount] = useAtom(counterAtom);
@@ -9,6 +10,7 @@ const Counter = () => {
 
     return(
         <>
+        <h1>{count}</h1>
         <div className="card">
         <button onClick={() => setCount((prev) => prev + 1)}>
           +
@@ -16,13 +18,9 @@ const Counter = () => {
         <button onClick={() => setCount((prev) => prev - 1)}>
           -
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <DoubleCounter/>
       </>
     )
 }
