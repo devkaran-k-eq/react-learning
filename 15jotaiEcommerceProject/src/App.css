@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+
+input.search {
+    width: 80%;
+    max-width: 300px; 
+    min-width: 150px; 
+    border: 1px solid #050202;
+    display: block;
+    padding: 9px 4px 9px 40px;
+    background: transparent url("../src/assets/image.png") no-repeat 13px;
+    border-radius: 2rem;
+    background-color: #F8F8F8;
+    font-size: 1rem;
+}
+
+
+
+nav a:hover{
+    cursor: pointer;
+}
+
+#sidebar-active{
+    display: none;
+
+}
+
+.open-sidebar-button, .close-sidebar-button{
+    display: none;
+}
+
+.side-bar-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    gap: 20px;
+    
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    input.search {
+        width: 90%; 
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 450px) {
+    input.search {
+        width: 95%; 
+        font-size: 0.85rem; 
+        padding: 6px 0px 2px 35px 
+    }
+}
+
+
+@media(max-width: 573px){
+    .links-container{
+        flex-direction: row;
+        align-items: flex-start;
+        position:fixed ;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        width: 100%;
+        backdrop-filter: blur(10px);
+        height: 100%;
+        display: none;
+        justify-content: center;
+    }
+
+    
+
+    .side-bar-style{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+        gap: 20px;
+        
+    }
+
+    .open-sidebar-button, .close-sidebar-button{
+        display: block;
+       
+    }
+
+    .close-sidebar-button svg{
+        position: fixed;
+        right: 0px;
+    }
+
+    #sidebar-active:checked ~ .links-container{
+        display: flex;
+    }
+}
+
+@media (max-width: 425px) {
+    .custom-text-size {
+        font-size: 18px;
+        width: 26rem;
+        text-align: center;
+    }
+}
