@@ -5,7 +5,7 @@ import { StarRating } from "./index";
 
 export default function ProductCard({ product }) {
   const [cart, setCart] = useAtom(cartAtom);
-  console.log(product);
+  // console.log(product);
 
   const originalPrice = Math.ceil(
     (product.price + product.price * (20 / 100)).toFixed(2)
@@ -31,7 +31,7 @@ export default function ProductCard({ product }) {
   return (
     <div className="bg-[#f8f6f3] shadow-lg p-3 flex flex-col justify-end items-center rounded-2xl">
       <img src={product.image} alt="" className="w-full h-60 object-contain" />
-      <h3 className="text-lg font-semibold mt-2 text-justify">
+      <h3 className="text-2xl font-semibold my-2 text-justify">
         {product.title}
       </h3>
       <div className="flex flex-col items-center">
@@ -46,7 +46,7 @@ export default function ProductCard({ product }) {
           <span>({product.rating.count})</span>
         </div>
         {/* <div className="flex mt-4 relative"> */}
-        <p className="text-red-700 font-bold text-2xl">
+        <p className="text-red-700 font-bold text-4xl">
           ${product.price}&nbsp;
           <span className="text-gray-500 line-through font-bold text-xl">
             ${originalPrice}
@@ -54,7 +54,7 @@ export default function ProductCard({ product }) {
         </p>
         <button
           onClick={() => addToCart()}
-          className="bg-black text-white px-4 py-2 rounded-md relative overflow-hidden group mx-3 transition-transform duration-300 hover:scale-x-110"
+          className="bg-black text-white px-5 py-2 rounded-md relative overflow-hidden group mx-3 transition-transform duration-300 hover:scale-x-110 my-2 text-2xl"
         >
           <span className="relative z-10">Add to Cart</span>
           <span className="absolute bottom-0 left-0 w-full h-1 bg-[#00FF00] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
