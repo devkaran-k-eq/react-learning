@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function StarRating({ rating }) {
-    console.log("rating", rating);
+    // console.log("rating", rating);
     
     return (
       <div>

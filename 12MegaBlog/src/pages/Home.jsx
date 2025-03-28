@@ -38,7 +38,7 @@ export default function Home() {
           </div>
         </Container>
       </div>
-    );
+    )
   }
   return (
     <div className="w-full py-8">
