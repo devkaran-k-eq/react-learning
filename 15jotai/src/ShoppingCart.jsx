@@ -28,7 +28,7 @@ export default function ShoppingCart() {
   console.log("posts", posts);
   
   return (
-    <>
+    <div className="container">iv style={{ maxWidth: "100%", margin: "0 auto", padding: "1rem", overflowX: "hidden" }}>
       <h1>Shopping Cart</h1>
       <ul>
         {cart?.map((item, idx) => {
@@ -57,6 +57,6 @@ export default function ShoppingCart() {
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }
