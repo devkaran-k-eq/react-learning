@@ -89,12 +89,12 @@ export default function Post() {
             </div>
           )}
         </div>
-        <div className="border rounded-2xl m-4 h-fit bg-amber-50">
+        <div className="border rounded-2xl m-4 h-fit bg-amber-50 text-black">
           <h1 className="text-2xl font-bold">{post.title}</h1>
         </div>
         {post.content ? (
           <div className="border rounded-2xl m-4 h-fit bg-amber-50">
-            <div className="browser-css text-2xl text-justify m-9">
+            <div className="browser-css text-2xl text-justify m-9 text-black">
               {parse(post.content)}
             </div>{" "}
           </div>
