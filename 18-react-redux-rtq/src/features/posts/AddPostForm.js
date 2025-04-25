@@ -24,6 +24,10 @@ const AddPostForm = () => {
   const onSavePostClicked = async () => {
     if (canSave) {
       try {
+
+        // .unwrap() is not about getting data — it's about getting cleaner, promise-like behavior with try/catch, just like using fetch() or axios.
+
+
         await addNewPost({ title, body: content, userId }).unwrap();
 
         setTitle("");

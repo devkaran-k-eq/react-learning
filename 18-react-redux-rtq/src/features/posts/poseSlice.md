@@ -115,3 +115,12 @@ Imagine you're building a **blog site**:
 ---
 
 If you'd like, I can show how to **display this in a component** and how the data looks after `createEntityAdapter`. Want to see that?
+
+---
+
+### 💬 Think of tags like post-its:
+
+- `providesTags` is like putting a sticky note on your data saying “this is Product:1”
+- `invalidatesTags` is like saying “throw away anything labeled Product:1 and get it fresh again”
+
+---

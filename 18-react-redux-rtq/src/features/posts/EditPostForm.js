@@ -66,19 +66,15 @@ const EditPostForm = () => {
     </option>
   ));
 
-  const onDeletePostClicked = () => {
+  const onDeletePostClicked = async () => {
     try {
-      setRequestStatus("pending");
-      dispatch(deletePost({ id: post.id })).unwrap();
-
+      await deletePost({id: post.id})
       setTitle("");
       setContent("");
       setUserId("");
       navigate("/");
     } catch (err) {
       console.error("Failed to delete the post", err);
-    } finally {
-      setRequestStatus("idle");
     }
   };
 

@@ -3,21 +3,15 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 import { sub } from "date-fns";
 import { apiSlice } from "../api/apiSlice"; // Import the base API setup
 
-// 🧠 Step 1: Create an Entity Adapter
-// Entity Adapter helps organize post data in a normalized way (easy to manage)
-// Also lets us sort posts by their `date` — latest first
 
 const postsAdapter = createEntityAdapter({
   sortComparer: (a, b) => b.date.localeCompare(a.date), // Sort by date descending
 });
 
-// 📦 Step 2: Create initial state for posts
-// This is the "empty shelf" for storing posts
 
 const initialState = postsAdapter.getInitialState();
 console.log(initialState); // For debugging: shows { ids: [], entities: {} }
 
-// 🛰️ Step 3: Extend the base API with a `getPosts` endpoint
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -51,18 +45,25 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         return postsAdapter.setAll(initialState, loadedPosts);
       },
       // 🏷️ Tell RTK Query how to cache this query
-      providesTags: (result, error, arg) => [
-        { type: "Post", id: "LIST" }, // Tag the full list
-        ...result.ids.map((id) => ({ type: "Post", id })), // Tag each post by ID
-      ],
+      providesTags: (result, error, arg) => {
+        if (!result || !result.ids) {
+          // Handle cases where result is undefined or does not have ids
+          return [{ type: "Post", id: "LIST" }];
+        }
+
+        return [
+          { type: "Post", id: "LIST" }, // Tag the full list
+          ...result.ids.map((id) => ({ type: "Post", id })), // Tag each post by ID
+        ];
+      },
     }),
     getPostsByUserId: builder.query({
       query: (id) => `/posts/?userId=${id}`,
       transformResponse: (responseData) => {
         let min = 1;
         const loadedPosts = responseData.map((post) => {
-          if (!post?.Date) sub(new Date(), { minutes: min++ }).toISOString();
-
+          if (!post?.date) // Fixed typo: changed `Date` to `date`
+            post.date = sub(new Date(), { minutes: min++ }).toISOString(); // Added assignment
           if (!post?.reactions)
             post.reactions = {
               thumbsUp: 0,
@@ -71,19 +72,17 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
               rocket: 0,
               coffee: 0,
             };
-
           return post;
         });
         return postsAdapter.setAll(initialState, loadedPosts);
       },
-      providesTags: (result, error, arg) => {
-        console.log(result);
-        return [...result.ids.map((id) => ({ type: "Post", id }))];
-      },
+      providesTags: (result, error, arg) => [
+        ...result.ids.map((id) => ({ type: "Post", id })),
+      ],
     }),
     addNewPost: builder.mutation({
       query: (initialPost) => ({
-        url: "/post",
+        url: "/posts",
         method: "POST",
         body: {
           ...initialPost,
@@ -99,7 +98,9 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         },
       }),
 
-      invalidatesTags: (result, error, args) => [{ type: "Post", id: "LIST" }],
+      // invalidatesTags is like saying “throw away anything labeled Product:1 and get it fresh again”
+
+      invalidatesTags: (result, error, arg) => [{ type: "Post", id: "LIST" }],
     }),
     updatePost: builder.mutation({
       query: (initialPost) => ({
@@ -110,7 +111,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           date: new Date().toISOString(),
         },
       }),
-      invalidatesTags: (result, error, id) => [
+      invalidatesTags: (result, error, arg) => [
         {
           type: "Post",
           id: arg.id,
@@ -119,12 +120,41 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
     }),
     deletePost: builder.mutation({
       query: ({ id }) => ({
-        url: `posts/${id}`,
+        url: `/posts/${id}`,
         method: "DELETE",
         body: { id },
       }),
-      invalidatesTags: function (result, error, id) {
+      invalidatesTags: function (result, error, arg) {
         return [{ type: "Post", id: arg.id }];
+      },
+    }),
+    addReaction: builder.mutation({
+      query: ({ postId, reactions }) => ({
+        url: `posts/${postId}`,
+        method: "PATCH",
+        body: {
+          reactions,
+        },
+      }),
+      onQueryStarted: async (
+        { postId, reactions },
+        { dispatch, queryFulfilled }
+      ) => {
+        const patchResult = dispatch(
+          extendedApiSlice.util.updateQueryData(
+            "getPosts",
+            undefined,
+            (draft) => {
+              const post = draft.entities[postId];
+              if (post) post.reactions = reactions;
+            }
+          )
+        );
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          patchResult.undo();
+        }
       },
     }),
   }),
@@ -139,6 +169,7 @@ export const {
   useAddNewPostMutation,
   useDeletePostMutation,
   useUpdatePostMutation,
+  useAddReactionMutation,
 } = extendedApiSlice;
 
 // 🧠 Step 5: Create a Selector to extract the query result from the Redux store
@@ -150,11 +181,6 @@ const selectPostsData = createSelector(
   selectPostsResult,
   (postResult) => postResult.data // This gives us the normalized posts
 );
-
-// 🧹 Step 7: Create selectors to work with normalized state
-// These allow us to read data easily from the Redux store like:
-// - selectAllPosts(state) => gets all posts
-// - selectPostById(state, postId) => gets post by ID
 
 export const {
   selectAll: selectAllPosts,
