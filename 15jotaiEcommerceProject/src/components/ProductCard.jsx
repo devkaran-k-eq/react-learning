@@ -30,7 +30,7 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="bg-[#f8f6f3] shadow-lg p-3 flex flex-col justify-end items-center rounded-2xl">
-      <img src={product.image} alt="" className="w-full h-60 object-contain" />
+      <img loading="lazy" src={product.image} alt="" className="w-full h-60 object-contain" />
       <h3 className="text-2xl font-semibold my-2 text-justify">
         {product.title}
       </h3>

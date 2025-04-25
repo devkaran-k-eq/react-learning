@@ -19,16 +19,6 @@ export default function Header() {
         </Link>
 
         <div className="flex">
-          {/* <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `text-3xl block py-2 pr-4 pl-3 duration-200 rounded-md hover:shadow-2xl ${
-                isActive ? "bg-black text-white rounded-md px-4" : "text-black"
-              }`
-            }
-          >
-            Home
-          </NavLink> */}
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -38,7 +28,7 @@ export default function Header() {
                   : "rounded-md px-4 text-black"
               } text-3xl block py-2 h-15 pr-4 duration-200 rounded-md hover:shadow-2xl hover:bg-black hover:text-white hover:rounded-md px-4 text-black mr-2.5`
             }
-          >
+            >
             Home
           </NavLink>
           <NavLink

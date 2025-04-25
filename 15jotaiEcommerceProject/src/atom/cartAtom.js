@@ -1,7 +1,7 @@
 import { atom } from "jotai";
-import {loadable} from "jotai/utils"
+import {loadable, atomWithStorage} from "jotai/utils"
 
-export const cartAtom = atom([]);
+export const cartAtom = atomWithStorage('cart', []);
 
 export const totalAtom = atom((get) => {
   return get(cartAtom).reduce((sum, item) => {

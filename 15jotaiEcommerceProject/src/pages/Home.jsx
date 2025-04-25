@@ -51,11 +51,10 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold text-gray-500 mb-6 pb-5 text-center border-b">
+      <h2 className="text-2xl font-bold text-gray-500 mb-6 pb-5 text-center border-b">
         Check Out Our New Products at{" "}
-        <span className="text-black relative group hover:bg-black hover:text-white hover:p-2">
+        <span className="text-black relative hover:text-3xl">
           NEXTON eCommerce !!!
-          <span className="absolute left-0 bottom-0 h-1.5 bg-[#00FF00] transition-all duration-300 group-hover:w-full"></span>
         </span>
       </h2>
 
