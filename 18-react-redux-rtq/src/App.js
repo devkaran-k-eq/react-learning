@@ -21,12 +21,12 @@ function App() {
         </Route>
 
         <Route path="user">
-          <Route index element={<UsersList />} />
+          <Route  element={<UsersList />} />
           <Route path=":userId" element={<UserPage />} />
         </Route>
 
         {/* Catch all - replace with 404 component if you want */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate />} />
 
       </Route>
     </Routes>

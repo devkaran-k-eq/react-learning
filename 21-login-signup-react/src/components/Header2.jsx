@@ -117,7 +117,7 @@ export default function Header1() {
                                             }`
                                         }
                                     >
-                                        My Cart <span className="text-red">({totalSelection})</span>
+                                        My Cart <span className="text-[#00FF00]">({totalSelection})</span>
                                     </NavLink>
 
 
